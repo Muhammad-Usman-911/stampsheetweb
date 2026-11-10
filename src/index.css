@@ -1,0 +1,151 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* Same theme tokens as the StampSheet app (vmeta/ui/src/index.css). */
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.002 250);
+  --foreground: oklch(0.2 0.02 260);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2 0.02 260);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2 0.02 260);
+  --primary: oklch(0.55 0.2 262);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.96 0.008 255);
+  --secondary-foreground: oklch(0.25 0.02 260);
+  --muted: oklch(0.965 0.006 255);
+  --muted-foreground: oklch(0.52 0.02 260);
+  --accent: oklch(0.95 0.025 262);
+  --accent-foreground: oklch(0.3 0.08 262);
+  --destructive: oklch(0.58 0.22 27);
+  --border: oklch(0.91 0.008 255);
+  --input: oklch(0.89 0.01 255);
+  --ring: oklch(0.55 0.2 262);
+  --success: oklch(0.6 0.15 155);
+  --success-soft: oklch(0.96 0.04 155);
+  --warning: oklch(0.68 0.16 65);
+  --warning-soft: oklch(0.97 0.045 80);
+  /* website only */
+  --alt: oklch(0.97 0.006 255);
+  --glow: oklch(0.7 0.16 262 / 22%);
+  --shadow-soft: 0 1px 2px oklch(0.2 0.02 260 / 6%), 0 12px 32px -12px oklch(0.3 0.05 262 / 18%);
+  --shadow-big: 0 2px 4px oklch(0.2 0.02 260 / 5%), 0 30px 80px -24px oklch(0.35 0.12 262 / 35%);
+}
+
+.dark {
+  --background: oklch(0.16 0.01 260);
+  --foreground: oklch(0.96 0.005 255);
+  --card: oklch(0.2 0.012 260);
+  --card-foreground: oklch(0.96 0.005 255);
+  --popover: oklch(0.22 0.012 260);
+  --popover-foreground: oklch(0.96 0.005 255);
+  --primary: oklch(0.66 0.17 262);
+  --primary-foreground: oklch(0.15 0.01 260);
+  --secondary: oklch(0.26 0.012 260);
+  --secondary-foreground: oklch(0.96 0.005 255);
+  --muted: oklch(0.25 0.012 260);
+  --muted-foreground: oklch(0.7 0.015 260);
+  --accent: oklch(0.28 0.04 262);
+  --accent-foreground: oklch(0.92 0.03 262);
+  --destructive: oklch(0.68 0.19 25);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.66 0.17 262);
+  --success: oklch(0.72 0.15 155);
+  --success-soft: oklch(0.3 0.06 155);
+  --warning: oklch(0.78 0.14 75);
+  --warning-soft: oklch(0.3 0.06 70);
+  --alt: oklch(0.18 0.011 260);
+  --glow: oklch(0.55 0.18 262 / 30%);
+  --shadow-soft: 0 1px 2px oklch(0 0 0 / 30%), 0 12px 32px -12px oklch(0 0 0 / 50%);
+  --shadow-big: 0 2px 4px oklch(0 0 0 / 30%), 0 30px 80px -24px oklch(0 0 0 / 70%);
+}
+
+@theme inline {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, Consolas, monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-alt: var(--alt);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-big: var(--shadow-big);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+    overflow-x: hidden;
+  }
+  h1, h2, h3 { text-wrap: balance; letter-spacing: -0.025em; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(120deg, #3b82f6, #1d4ed8 45%, #059669);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  .dark & { background-image: linear-gradient(120deg, #60a5fa, #818cf8 45%, #34d399); }
+}
+
+/* Faint grid + colour glow behind the hero. */
+.hero-glow {
+  background:
+    radial-gradient(40% 50% at 75% 30%, var(--glow), transparent 70%),
+    radial-gradient(30% 40% at 15% 10%, oklch(0.75 0.14 160 / 14%), transparent 70%);
+}
+.hero-glow::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(60% 60% at 50% 30%, #000 20%, transparent 75%);
+  opacity: .55;
+}
+
+/* Camera wall behind the clock: light and dark bands + a pillar (bands match WALL in ClockFrame.tsx). */
+.camera-wall {
+  background:
+    linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, .35)),
+    linear-gradient(90deg, #d3d7da 0 18%, #4d5359 18% 31%, #e8eaeb 31% 47%, #23272b 47% 53%, #d9dcde 53% 72%, #454b51 72% 100%);
+}
+
+@keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@keyframes scan {
+  0% { left: 6px; width: 40px; opacity: 0; }
+  10% { opacity: 1; }
+  70% { left: 6px; width: calc(100% - 12px); opacity: 1; }
+  90%, 100% { left: 6px; width: calc(100% - 12px); opacity: 0; }
+}
+.animate-shimmer { animation: shimmer 1.1s linear infinite; }
+.animate-scan { animation: scan 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .animate-shimmer, .animate-scan { animation: none; } }
