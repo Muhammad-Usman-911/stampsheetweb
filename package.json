@@ -1,5 +1,5 @@
 {
-  "name": "stampsheet-website",
+  "name": "stampsheetwebsite",
   "version": "1.0.0",
   "description": "Website for StampSheet, the desktop app that turns CCTV/NVR footage into an Excel log.",
   "private": true,
